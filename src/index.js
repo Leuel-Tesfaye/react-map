@@ -24,23 +24,63 @@ import ReactDOM from 'react-dom';
 /** As you see the numbers are attached together in one line. to avoid this we modify the array and change the array elements to JSX elements. */
 
 const Number = ({numbers}) =>{
-  const list = numbers.map ((number) => <li>{number}</li>)
+  const list = numbers.map ((numbers) => <li>{numbers}</li>)
   return list
-
 }
 
-const App = () =>{
-  const numbers = [1,2,3,4,5,6]
+const NumberList = () =>{
+  const numbers  = [1,2,3,4,5]
   return (
-      <div className='container'>
-        <div>
-          <h1>Numbers list </h1>
-          <ul>
-            <Number numbers={numbers}/>
-          </ul>
-        </div>
+    <div className='container'>
+      <div>
+        <h1>Numbers List</h1>
+        <ul>
+        <Number numbers={numbers}/>
+      </ul>
       </div>
+     
+    </div>
   )
+}
+/** Mapping array of objects  */
+const countries = [
+  {name: 'Finland ', city: 'Helsinki'},
+  {name: 'Ethiopia', city: 'Addis Ababa'},
+  {name: 'Kenya', city: 'Nirobi'},
+  {name: 'England', city: 'London'},
+] 
+  const Country = ({country:{name,city}}) =>{
+    return (
+        <div>
+          <h1>{name}</h1>
+          <small>{city}</small>
+        </div>
+    )
+  }
+  const Countries = ({countries}) =>{
+    const countryList = countries.map((country) => <Country country={country} />)
+    return <div>{countryList}</div>
+  }
+
+const CountryList = ()=>{
+  return(
+    <div>
+    <div>
+      <h1>Countries List</h1>
+      <Countries countries={countries}/>
+    </div>
+  </div>
+  )
+
+}
+const App = () =>{
+  return(
+    <div>
+    {<NumberList/>}
+    {<CountryList/>}
+  </div>
+  )
+
 }
 const rootElement = document.getElementById('root');
 ReactDOM.render(<App/>, rootElement)
